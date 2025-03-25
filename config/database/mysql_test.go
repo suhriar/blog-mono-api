@@ -12,10 +12,10 @@ func TestNewMySQLConnection_Integration(t *testing.T) {
 	cfg := &config.Config{
 		MySql: config.MySqlConfig{
 			User:     "root",
-			Password: "root",
+			Password: "rootpassword",
 			Host:     "localhost",
 			Port:     "3306",
-			Name:     "user-db",
+			Name:     "blog-db",
 		},
 	}
 

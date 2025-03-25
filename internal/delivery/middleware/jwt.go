@@ -6,11 +6,11 @@ import (
 	"net/http"
 	"strings"
 	"time"
-	"user-service/pkg/utils"
 
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/suhriar/blog-mono-api/config"
 	"github.com/suhriar/blog-mono-api/model"
+	"github.com/suhriar/blog-mono-api/pkg/utils"
 )
 
 type JWTMiddleware struct {

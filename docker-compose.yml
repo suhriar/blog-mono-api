@@ -1,0 +1,46 @@
+version: '3.9'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: blog-db
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      retries: 5
+      timeout: 5s
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app-container
+    volumes:
+      - .:/app
+      - ./logs:/app/logs
+    environment:
+      PORT: 8080
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASS: rootpassword 
+      DB_NAME: blog-db
+      JWT_SECRET_KEY: secret-key
+      LOG_LEVEL: debug
+      LOG_TYPE: json
+      LOG_FILE_PATH: logs/app.log
+      LOG_FILE_ENABLED: true
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: always
+
+volumes:
+  logs:

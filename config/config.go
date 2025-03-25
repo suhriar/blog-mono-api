@@ -50,14 +50,14 @@ func LoadConfig() {
 
 	AppConfig = &Config{
 		Server: ServerConfig{
-			Port: getEnv("PORT", "8000"),
+			Port: getEnv("PORT", "8080"),
 		},
 		MySql: MySqlConfig{
 			Host:     getEnv("DB_HOST", "localhost"),
 			Port:     getEnv("DB_PORT", "3306"),
 			User:     getEnv("DB_USER", "root"),
-			Password: getEnv("DB_PASS", ""),
-			Name:     getEnv("DB_NAME", "user-db"),
+			Password: getEnv("DB_PASS", "rootpassword"),
+			Name:     getEnv("DB_NAME", "blog-db"),
 		},
 		Jwt: JwtConfig{
 			Secret: getEnv("JWT_SECRET_KEY", "secret"),
