@@ -41,9 +41,9 @@ type Pagination struct {
 }
 
 type GetPostResponse struct {
-	PostDetail Post      `json:"post_detail"`
-	LikeCount  int       `json:"like_count"`
-	Comments   []Comment `json:"comments"`
+	PostDetail PostDetail        `json:"post_detail"`
+	LikeCount  int               `json:"like_count"`
+	Comments   []CommentResponse `json:"comments"`
 }
 
 type CommentResponse struct {
