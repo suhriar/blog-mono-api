@@ -46,7 +46,7 @@ func (u *userUsecase) SignUp(ctx context.Context, req model.SignUpRequest) (err 
 	return
 }
 
-func (u *userUsecase) Login(ctx context.Context, req model.LoginRequest) (jwtTokenstring, refreshToken string, err error) {
+func (u *userUsecase) Login(ctx context.Context, req model.LoginRequest) (jwtToken, refreshToken string, err error) {
 	user, err := u.userRepository.GetUser(ctx, req.Email, "", 0)
 	if err != nil {
 		return "", "", err
@@ -61,7 +61,7 @@ func (u *userUsecase) Login(ctx context.Context, req model.LoginRequest) (jwtTok
 		return "", "", errors.New("email or password is invalid")
 	}
 
-	jwtToken, err := utils.GenerateJWT(user.ID, user.Username, user.Email)
+	jwtToken, err = utils.GenerateJWT(user.ID, user.Username, user.Email)
 	if err != nil {
 		return "", "", err
 	}
